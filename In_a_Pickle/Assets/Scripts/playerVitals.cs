@@ -8,7 +8,7 @@ public class playerVitals : MonoBehaviour
 {
     //public Slider staminaSlider;
     //public int staminaFallRate;
-    //public int maxStamina;
+   // public int maxStamina;
 
 
     public Slider hydrationSlider;
@@ -24,6 +24,8 @@ public class playerVitals : MonoBehaviour
         hydrationSlider.maxValue = maxHydration;
         hydrationSlider.value = maxHydration;
 
+
+
     }
 
     void Update()
@@ -32,7 +34,7 @@ public class playerVitals : MonoBehaviour
         //Hydration
         if(hydrationSlider.value >= 0)
         {
-            hydrationSlider.value -= Time.deltaTime / hydrationFallRate;
+            hydrationSlider.value -= Time.deltaTime * hydrationFallRate;
         }
 
         else if(hydrationSlider.value <= 0)

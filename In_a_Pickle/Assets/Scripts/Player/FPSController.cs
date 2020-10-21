@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FPSController : MonoBehaviour
 {
@@ -27,10 +28,21 @@ public class FPSController : MonoBehaviour
     Vector3 directionIntentY;
     float speed;
 
-    
+    public Slider staminaSlider;
+    public int staminaFallRate;
+    public int staminaRegainRate;
+    public int maxStamina;
+
+
 
     //public bool grounded;
+    void Start()
+    {
+        staminaSlider.maxValue = maxStamina;
+        staminaSlider.value = maxStamina;
 
+
+    }
     void Update()
     {
         LookRotation();
@@ -42,6 +54,8 @@ public class FPSController : MonoBehaviour
         {
             Jump();
         }
+
+        
     }
 
     void LookRotation()
@@ -97,11 +111,21 @@ public class FPSController : MonoBehaviour
         //control our speed based on our movement state
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = runSpeed;
+            if (staminaSlider.value > 0)
+            {
+                speed = runSpeed;
+                staminaSlider.value -= Time.deltaTime  * staminaFallRate;
+            }
+            else
+            {
+                speed = walkSpeed;
+                staminaSlider.value += Time.deltaTime * staminaRegainRate;
+            }
         }
         if (!Input.GetKey(KeyCode.LeftShift))
         {
             speed = walkSpeed;
+            staminaSlider.value += Time.deltaTime * staminaRegainRate;
         }
     }
 
