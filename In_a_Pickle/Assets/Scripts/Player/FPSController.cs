@@ -115,6 +115,7 @@ public class FPSController : MonoBehaviour
             {
                 speed = runSpeed;
                 staminaSlider.value -= Time.deltaTime  * staminaFallRate;
+                
             }
             else
             {

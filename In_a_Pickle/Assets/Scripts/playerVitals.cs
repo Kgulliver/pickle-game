@@ -35,6 +35,7 @@ public class playerVitals : MonoBehaviour
         if(hydrationSlider.value >= 0)
         {
             hydrationSlider.value -= Time.deltaTime * hydrationFallRate;
+            Debug.Log("");
         }
 
         else if(hydrationSlider.value <= 0)
